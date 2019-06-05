@@ -5,10 +5,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-data class ErrorDetail(var title: String, var status: Int, var detail: String,
-                       var developerMessage: String, var errors: HashMap<String, List<ValidationError>> = HashMap()) {
+data class ErrorDetail(var title: String? = null, var status: Int? = null, var detail: String? = null,
+                       var developerMessage: String? = null,
+                       var errors: HashMap<String, List<ValidationError>> = HashMap()) {
     var timestamp: String = "default value"
-    set(value) {
-        field = SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z").format(Date(value))
+        get() = timestamp
+
+    fun setTimestamp(value: Long) {
+        timestamp = SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z").format(Date(value))
     }
 }
